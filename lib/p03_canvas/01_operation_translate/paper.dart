@@ -29,7 +29,7 @@ class PaperPainter extends CustomPainter {
     canvas.translate(size.width / 2, size.height / 2);
     canvas.drawCircle(Offset(0, 0), 50, paint);
     canvas.drawLine(
-        Offset(20, 20),
+        Offset(0, 0),
         Offset(50, 50),
         paint
           ..color = Colors.red

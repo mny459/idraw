@@ -52,7 +52,7 @@ class PaperPainter extends CustomPainter {
     path.lineTo(-60, -60);
     path.close();
 
-    canvas.drawPath(path, _paint);
+    canvas.drawPath(path, _paint..style = PaintingStyle.fill);
     canvas.translate(140, 0);
     canvas.drawPath(
         path,

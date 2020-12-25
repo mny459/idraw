@@ -16,6 +16,7 @@ class Paper extends StatefulWidget {
 }
 
 class _PaperState extends State<Paper> {
+  // 需要异步加载
   ui.Image _image;
 
   @override
@@ -36,10 +37,12 @@ class _PaperState extends State<Paper> {
         color: Colors.white, child: CustomPaint(painter: PaperPainter(_image)));
   }
 
-  //读取 assets 中的图片
+  // 读取 assets 中的图片
   Future<ui.Image> loadImageFromAssets(String path) async {
+    // 将 Assets 的文件读取为字节流
     ByteData data = await rootBundle.load(path);
     List<int> bytes = data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+    // 将字节流转换为 ui.Image 对象
     return decodeImageFromList(bytes);
   }
 }

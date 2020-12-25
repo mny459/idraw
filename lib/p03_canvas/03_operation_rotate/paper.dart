@@ -67,6 +67,7 @@ class PaperPainter extends CustomPainter {
     for (int i = 0; i < count; i++) {
       var step = 2 * pi / count;
       canvas.drawLine(Offset(80, 0), Offset(100, 0), paint);
+      /// 旋转的入参是弧度
       canvas.rotate(step);
     }
     canvas.restore();

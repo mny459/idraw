@@ -44,7 +44,8 @@ class PaperPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     coordinate.paint(canvas, size);
     canvas.translate(size.width / 2, size.height / 2);
-    _draw(canvas);
+    // _draw(canvas);
+    _drawArcDetail(canvas);
   }
 
   void _draw(Canvas canvas) {
@@ -58,7 +59,7 @@ class PaperPainter extends CustomPainter {
 
     canvas.save();
     canvas.translate(200, 0);
-    //drawArc(矩形区域,起始弧度,扫描弧度,是否连中心,画笔)
+    ///drawArc(矩形区域,起始弧度,扫描弧度,是否连中心,画笔)
     canvas.drawArc(rect, 0, pi / 2 * 3, true, _paint);
     canvas.restore();
   }

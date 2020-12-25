@@ -103,15 +103,15 @@ class PaperPainter extends CustomPainter {
               height: 60),
           Rect.fromLTRB(0, 0, 100, 100).translate(-280, -100),
           _paint);
-
-      canvas.drawImageRect(
-          image,
-          Rect.fromCenter(
-              center: Offset(image.width / 2 + 60, image.height / 2),
-              width: 60,
-              height: 60),
-          Rect.fromLTRB(0, 0, 100, 100).translate(-280, 50),
-          _paint);
+      //
+      // canvas.drawImageRect(
+      //     image,
+      //     Rect.fromCenter(
+      //         center: Offset(image.width / 2 + 60, image.height / 2),
+      //         width: 60,
+      //         height: 60),
+      //     Rect.fromLTRB(0, 0, 100, 100).translate(-280, 50),
+      //     _paint);
     }
   }
 }

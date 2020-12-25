@@ -15,7 +15,8 @@ class Paper extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      child: CustomPaint( // 使用CustomPaint
+      child: CustomPaint(
+        // 使用CustomPaint
         painter: PaperPainter(),
       ),
     );
@@ -45,9 +46,11 @@ class PaperPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     canvas.translate(size.width / 2, size.height / 2);
     _drawGrid(canvas, size);
-    _drawAxis(canvas,size);
 
-    _drawPointsWithPoints(canvas);
+    /// 绘制 x、y 轴
+    _drawAxis(canvas, size);
+    //
+    // _drawPointsWithPoints(canvas);
     // _drawPointsWithLines(canvas);
     _drawPointLineWithPolygon(canvas);
     _drawRawPoints(canvas);
@@ -66,20 +69,23 @@ class PaperPainter extends CustomPainter {
   void _drawPointsWithPoints(Canvas canvas) {
     _paint
       ..color = Colors.red
-      ..style = PaintingStyle.stroke..strokeWidth=10
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 10
       ..strokeCap = StrokeCap.round;
     canvas.drawPoints(PointMode.points, points, _paint);
   }
 
- void _drawPointsWithLines(Canvas canvas) {
-   _paint
-     ..color = Colors.red
-     ..style = PaintingStyle.stroke
-     ..strokeWidth = 1
-     ..strokeCap = StrokeCap.round;
-   canvas.drawPoints(PointMode.lines, points, _paint);
- }
+  /// 线段模式下：每两个点一对形成线段。如果点是奇数个，那么最后一个点将没有用。
+  void _drawPointsWithLines(Canvas canvas) {
+    _paint
+      ..color = Colors.red
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 1
+      ..strokeCap = StrokeCap.round;
+    canvas.drawPoints(PointMode.lines, points, _paint);
+  }
 
+  /// 多边形连线模式下：所有的点依次连接成图形。
   void _drawPointLineWithPolygon(Canvas canvas) {
     _paint
       ..color = Colors.red
@@ -91,9 +97,21 @@ class PaperPainter extends CustomPainter {
 
   void _drawRawPoints(Canvas canvas) {
     Float32List pos = Float32List.fromList([
-      -120, -20,-80, -80,-40,
-      -40,0, -100,40, -140,
-      80, -160,120, -100]);
+      -120,
+      -20,
+      -80,
+      -80,
+      -40,
+      -40,
+      0,
+      -100,
+      40,
+      -140,
+      80,
+      -160,
+      120,
+      -100
+    ]);
     _paint
       ..color = Colors.red
       ..style = PaintingStyle.stroke
@@ -103,15 +121,22 @@ class PaperPainter extends CustomPainter {
   }
 
   void _drawAxis(Canvas canvas, Size size) {
-    _paint..color=Colors.blue..strokeWidth=1.5;
-    canvas.drawLine(Offset(-size.width/2, 0) , Offset(size.width/2, 0),_paint);
-    canvas.drawLine(Offset( 0,-size.height/2) , Offset( 0,size.height/2),_paint);
-    canvas.drawLine(Offset( 0,size.height/2) , Offset( 0-7.0,size.height/2-10),_paint);
-    canvas.drawLine(Offset( 0,size.height/2) , Offset( 0+7.0,size.height/2-10),_paint);
-    canvas.drawLine(Offset(size.width/2, 0) , Offset(size.width/2-10, 7),_paint);
-    canvas.drawLine(Offset(size.width/2, 0) , Offset(size.width/2-10, -7),_paint);
+    _paint
+      ..color = Colors.blue
+      ..strokeWidth = 1.5;
+    canvas.drawLine(
+        Offset(-size.width / 2, 0), Offset(size.width / 2, 0), _paint);
+    canvas.drawLine(
+        Offset(0, -size.height / 2), Offset(0, size.height / 2), _paint);
+    canvas.drawLine(Offset(0, size.height / 2),
+        Offset(0 - 7.0, size.height / 2 - 10), _paint);
+    canvas.drawLine(Offset(0, size.height / 2),
+        Offset(0 + 7.0, size.height / 2 - 10), _paint);
+    canvas.drawLine(
+        Offset(size.width / 2, 0), Offset(size.width / 2 - 10, 7), _paint);
+    canvas.drawLine(
+        Offset(size.width / 2, 0), Offset(size.width / 2 - 10, -7), _paint);
   }
-
 
   @override
   bool shouldRepaint(CustomPainter oldDelegate) => false;
@@ -145,10 +170,8 @@ class PaperPainter extends CustomPainter {
     canvas.save();
     for (int i = 0; i < size.width / 2 / step; i++) {
       canvas.drawLine(Offset(0, 0), Offset(0, size.height / 2), _gridPint);
-      canvas.translate(step , 0);
+      canvas.translate(step, 0);
     }
     canvas.restore();
   }
-
-
 }

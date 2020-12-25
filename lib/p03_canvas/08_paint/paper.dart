@@ -66,7 +66,7 @@ class PaperPainter extends CustomPainter {
         colors, pos, TileMode.clamp);
 
     _paint.blendMode=BlendMode.lighten;
-
+    // 对 Paint 做叠加效果
     canvas.drawPaint(_paint);
   }
 

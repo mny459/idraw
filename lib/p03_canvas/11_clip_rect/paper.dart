@@ -47,7 +47,7 @@ class PaperPainter extends CustomPainter {
 
     // canvas.save();
     var rect = Rect.fromCenter(center: Offset.zero,width: 360,height: 240);
-    canvas.clipRect(rect,doAntiAlias: true,clipOp: ui.ClipOp.intersect);
+    canvas.clipRect(rect,doAntiAlias: true,clipOp: ui.ClipOp.difference);
 
     var colors = [
       Color(0xFFF60C0C),

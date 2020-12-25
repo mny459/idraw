@@ -26,6 +26,7 @@ class Paper extends StatelessWidget {
 }
 
 class PaperPainter extends CustomPainter {
+  /// 坐标系
   final Coordinate coordinate = Coordinate();
 
   Paint _paint;
@@ -42,6 +43,7 @@ class PaperPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
+    /// 绘制坐标系
     coordinate.paint(canvas, size);
 
     canvas.translate(size.width / 2, size.height / 2);
